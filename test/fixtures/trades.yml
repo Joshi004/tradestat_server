@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trade_session: one
+  asset: one
+  cost_price: 1.5
+  selling_price: 1.5
+  stop_loss: 1.5
+  target: 1.5
+  trade_action: MyString
+  quantity: 1
+  indicated_quantity: 1
+
+two:
+  trade_session: two
+  asset: two
+  cost_price: 1.5
+  selling_price: 1.5
+  stop_loss: 1.5
+  target: 1.5
+  trade_action: MyString
+  quantity: 1
+  indicated_quantity: 1

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trade_session: one
+  trade: one
+  message: MyText
+  comment_type: MyString
+
+two:
+  trade_session: two
+  trade: two
+  message: MyText
+  comment_type: MyString

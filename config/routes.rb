@@ -1,0 +1,22 @@
+Rails.application.routes.draw do
+  post 'trade_sessions/create_trade_session'
+  put 'trade_sessions/edit_trade_session'
+  delete 'trade_sessions/remove_trade_session'
+  get 'trade_sessions/get_trade_session'
+  post 'fund_transactions/add_transaction'
+  delete 'fund_transactions/remove_transaction'
+  put 'fund_transactions/edit_transaction'
+  get 'fund_transactions/get_transaction'
+  post 'comments/add_comment'
+  delete 'comments/remove_comment'
+  put 'comments/edit_comment'
+  get 'comments/get_comment'
+  get 'assets/get_asset'
+  delete 'assets/remove_asset'
+  post 'assets/add_asset' => 'assets#add_asset'
+  post 'trades/add_trade'
+  get 'trades/get_trade'
+  delete 'trades/remove_trade'
+  put 'trades/put_trade'
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+end
