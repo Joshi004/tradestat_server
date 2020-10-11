@@ -1,7 +1,7 @@
 class CreateTradeSessions < ActiveRecord::Migration[6.0]
   def change
     create_table :trade_sessions do |t|
-      t.references :asset, null: false, foreign_key: true
+      t.references :asset_isin_number,references: :assets, null: false
       t.timestamp :started_at
       t.timestamp :closed_at
       t.boolean :is_active

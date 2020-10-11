@@ -12,14 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2020_07_01_112041) do
 
-  create_table "assets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "assets", primary_key: "isin_number", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "symbol"
     t.string "name"
     t.string "series"
     t.date "date_of_listing"
     t.integer "paid_up_value"
-    t.string "isin_number"
     t.integer "face_value"
+    t.integer "market_lot"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -46,19 +46,19 @@ ActiveRecord::Schema.define(version: 2020_07_01_112041) do
   end
 
   create_table "trade_sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "asset_id", null: false
+    t.bigint "asset_isin_number_id", null: false
     t.timestamp "started_at"
     t.timestamp "closed_at"
     t.boolean "is_active"
     t.column "type", "enum('trade','deposit','withdrawal')", default: "trade", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["asset_id"], name: "index_trade_sessions_on_asset_id"
+    t.index ["asset_isin_number_id"], name: "index_trade_sessions_on_asset_isin_number_id"
   end
 
   create_table "trades", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "trade_session_id", null: false
-    t.bigint "asset_id", null: false
+    t.bigint "asset_isin_number_id", null: false
     t.float "cost_price"
     t.float "selling_price"
     t.float "stop_loss"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_07_01_112041) do
     t.boolean "is_active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["asset_id"], name: "index_trades_on_asset_id"
+    t.index ["asset_isin_number_id"], name: "index_trades_on_asset_isin_number_id"
     t.index ["trade_session_id"], name: "index_trades_on_trade_session_id"
   end
 
@@ -77,7 +77,5 @@ ActiveRecord::Schema.define(version: 2020_07_01_112041) do
   add_foreign_key "comments", "trades"
   add_foreign_key "fund_transctions", "trade_sessions"
   add_foreign_key "fund_transctions", "trades"
-  add_foreign_key "trade_sessions", "assets"
-  add_foreign_key "trades", "assets"
   add_foreign_key "trades", "trade_sessions"
 end
